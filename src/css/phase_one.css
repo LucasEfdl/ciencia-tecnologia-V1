@@ -1,0 +1,65 @@
+@import url(bootstrap.css);
+
+.game-screen {
+  background-image: url(../images/bg_game_one.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 1200px;
+  height: 520px;
+
+  position: relative;
+}
+
+.armadillo {
+  color: white;
+  background-image: url(../images/armadillo.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 120px;
+  height: 80px;
+
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+
+  transition: left 1s linear;
+}
+
+.textWin {
+  color: #000;
+}
+
+.modal-title {
+  color: #000;
+}
+
+.fox {
+  color: white;
+  background-image: url(../images/fox_a.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 100px;
+  height: 100px;
+
+  position: absolute;
+  bottom: 0px;
+  left: -450px;
+
+  transition: left 1s linear;
+}
+
+.overlay {
+  font-family: "Lucida Console", sans-serif;
+}
+
+.isMove {
+  background-image: url("../images/armadillog.gif");
+}
+
+.foxIsMove {
+  background-image: url("../images/foxg.gif");
+}
