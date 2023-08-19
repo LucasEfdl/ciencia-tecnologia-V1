@@ -5,8 +5,7 @@ const overlay = document.querySelector("[data-js=overlay]");
 const input = document.getElementById("inputVelocity");
 const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
 
-const endPosition = document.querySelector('span[class="final-position"]');
-const halfPosition = document.querySelector('span[class="initial-position"]');
+const endPosition = document.querySelector(".final-position");
 const halfTimeText = document.querySelector(".half-time-text");
 const foxConstVelocityText = document.querySelector(".fox-const-velocity-text");
 const distBetweenFoxArmadillo = document.querySelector(
@@ -25,17 +24,17 @@ const submitLogicButton = document.querySelector("[data-submit-logic]");
 
 // **********************  DATA  ********************** //
 let index = 0;
-endPosition.innerHTML = data[index].finalPosition;
-halfPosition.innerHTML = data[index].halfPosition;
+
 foxConstVelocityText.innerHTML = data[index].foxVelocity;
-halfTimeText.innerHTML = data[index].halfTime;
+halfTimeText.innerHTML = data[index].crashTime;
 distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
+endPosition.innerHTML = data[index].positionUntilEnd;
 
-let armadilloVelocity = data[index].armadilloVelocity;
-let armadilloPosition = data[index].armadilloPosition;
-
-let foxVelocity = data[index].foxVelocity;
-let foxPosition = data[index].foxPosition;
+const lostVelocity = 27
+let armadilloVelocity = 30;
+const armadilloPosition = 0;
+const foxVelocity = 41;
+const foxPosition = -450;
 
 let time = 0;
 
@@ -72,6 +71,7 @@ class Game {
   }
 
   startGame() {
+    console.log(armadilloVelocity);
     armadillo.classList.add("isMove");
     fox.classList.add("foxIsMove");
     const moveObjects = () => {
@@ -86,7 +86,7 @@ class Game {
       this.armadillo.style.left = `${position}px`;
       this.fox.style.left = `${foxPosition + foxVelocity * time}px`;
 
-      if (time == data[index].halfTime) {
+      if (time == 20) {
         clearInterval(mru);
         setTimeout(() => {
           overlay.classList.replace("d-none", "d-block");
@@ -98,7 +98,7 @@ class Game {
       // Fazendo a raposa parar quando sua posição for muito próxima da posição do Tatu e a resposta do usuário estiver errada
       if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left)) {
         clearInterval(mru);
-        this.fox.style.left = `${parseInt(this.fox.style.left) - 50}px`;
+        this.fox.style.left = `${parseInt(this.fox.style.left) - 100}px`;
         resetButton.disabled = false;
         setTimeout(() => {
           armadillo.classList.remove("isMove");
@@ -122,7 +122,6 @@ class Game {
   reset() {
     this.armadillo.style.left = `${armadilloPosition}px`;
     this.fox.style.left = `${foxPosition}px`;
-    armadilloVelocity = data[index].armadilloVelocity;
     position = 0;
     difference = 0;
     time = 0;
@@ -164,7 +163,8 @@ confirmAnswertButton.addEventListener("click", () => {
   const numValue = selectInputValue;
   num = parseInt(numValue);
   if (num != data[index].armadilloVelocity) {
-    armadilloVelocity = num;
+    armadilloVelocity = lostVelocity;
+    console.log(armadilloVelocity);
     difference = position;
     game.startGame();
     setTimeout(() => {
@@ -173,8 +173,9 @@ confirmAnswertButton.addEventListener("click", () => {
       modal.show();
     }, 1500);
   } else {
-    armadilloVelocity = num;
+    console.log(armadilloVelocity);
     game.startGame();
+    console.log(armadilloVelocity);
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
@@ -230,15 +231,11 @@ submitLogicButton.addEventListener("click", () => {
 
 function nextGame() {
   index++;
-
-  endPosition.innerHTML = data[index].finalPosition;
-  halfPosition.innerHTML = data[index].halfPosition;
+  armadilloVelocity = 30;
   foxConstVelocityText.innerHTML = data[index].foxVelocity;
-  foxVelocity = data[index].foxVelocity;
-  foxPosition = data[index].foxPosition;
-  armadilloVelocity = data[index].armadilloVelocity;
-  halfTimeText.innerHTML = data[index].halfTime;
+  halfTimeText.innerHTML = data[index].crashTime;
   distBetweenFoxArmadillo.innerText = data[index].distBetweenFoxAndArmadillo;
+  endPosition.innerHTML = data[index].positionUntilEnd;
 
   game.reset();
 }
