@@ -49,15 +49,6 @@
       >
         <div id="game-container" class="game-screen d-block overflow-hidden">
           <div class="d-block p-3 text-end">
-            <button
-              type="button"
-              class="btn btn-light"
-              data-bs-toggle="modal"
-              data-bs-target="#help"
-            >
-              <i class="bi bi-question-lg"></i> Ajuda
-            </button>
-
             <button id="reset" class="btn btn-danger" disabled>
               <i class="bi bi-pause"></i> Resetar
             </button>
@@ -73,9 +64,12 @@
             </p>
 
             <p class="texte-center">
-              <strong>Dados</strong>: sabendo que se a raposa mantiver uma velocidade  constante de <span class="fox-const-velocity-text"></span>m/s ela 
-              alcança o tatu em <span class="half-time-text"></span>. Considere, tambem, que a distancia entre a raposa e o tatu é de <span class="dist-between-fox-armadillo"></span>
-              e a distancia do tatu ate sua toca é de <span class="final-position"></span>
+              <strong>Dados</strong>: Sabendo que, se a raposa mantiver uma velocidade  constante de 
+              <strong><span class="fox-const-velocity-text"></span>m/s</strong>, ela 
+              alcança o tatu em 
+              <strong><span class="half-time-text"></span></strong>. Considere, também, que a distância entre a raposa e o tatu é de 
+              <strong><span class="dist-between-fox-armadillo"></span></strong>
+              e a distância do tatu até sua toca é de <strong><span class="final-position"></span></strong>.
             </p>
 
             <div
@@ -94,62 +88,6 @@
             </div>
           </div>
 
-          <!-- Código HTML do modal -->
-          <div
-            class="modal fade text-black"
-            id="help"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Migração do Peba
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-
-                <div class="modal-body text-center">
-                  <h4>Movimento retilineo unforme</h4>
-                  <br />
-                  <p>
-                    Para resolver esta questão, o aluno prescisa se lembrar do
-                    conceito universal da cinematica:
-                  </p>
-                  <img
-                    class="equacaoMRU"
-                    src="../src/images/equacao.jpg"
-                    alt=""
-                  />
-                  <p>
-                    Como a questão nos forne a distância e o tempo, só
-                    precisamos substituir na formula para encontrarmos a
-                    velocidade mínima.
-                  </p>
-                  <br />
-                  <p>Tente você mesmo agora!<br /></p>
-                </div>
-
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Fechar
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- Objetos -->
           <div class="armadillo" id="object"></div>
 
@@ -165,6 +103,7 @@
         role="dialog"
         aria-labelledby="modalLabel"
         aria-hidden="true"
+        data-bs-backdrop="static"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -172,18 +111,10 @@
               <h5 class="modal-title text-black" id="modalLabel">
                 Fim da fase
               </h5>
-              <button
-                type="button"
-                class="close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
             </div>
             <div class="modal-body">
               <p class="textWin text-black">
-                Parabéns, Você ganhou! Siga para próximo desafio.
+                Siga para próximo desafio.
               </p>
             </div>
             <div class="modal-footer">
