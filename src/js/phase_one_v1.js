@@ -71,7 +71,6 @@ class Game {
   }
 
   startGame() {
-    console.log(armadilloVelocity);
     armadillo.classList.add("isMove");
     fox.classList.add("foxIsMove");
     const moveObjects = () => {
@@ -164,7 +163,6 @@ confirmAnswertButton.addEventListener("click", () => {
   num = parseInt(numValue);
   if (num != data[index].armadilloVelocity) {
     armadilloVelocity = lostVelocity;
-    console.log(armadilloVelocity);
     difference = position;
     game.startGame();
     setTimeout(() => {
@@ -173,9 +171,7 @@ confirmAnswertButton.addEventListener("click", () => {
       modal.show();
     }, 1500);
   } else {
-    console.log(armadilloVelocity);
     game.startGame();
-    console.log(armadilloVelocity);
     setTimeout(() => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
