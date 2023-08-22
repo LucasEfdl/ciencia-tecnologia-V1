@@ -3,7 +3,6 @@ import data from "../data/data.json" assert { type: "json" };
 
 const overlay = document.querySelector("[data-js=overlay]");
 const input = document.getElementById("inputVelocity");
-const inputOfLogic = document.querySelector('input[type="text"][name="logic"]');
 
 const endPosition = document.querySelector(".final-position");
 const halfTimeText = document.querySelector(".half-time-text");
@@ -20,7 +19,7 @@ const fox = document.getElementById("object2");
 const intoGameButton = document.getElementById("start-button");
 const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
 const resetButton = document.getElementById("reset");
-const submitLogicButton = document.querySelector("[data-submit-logic]");
+const submitLogicButton = document.querySelector("#data-submit-logic");
 
 // **********************  DATA  ********************** //
 let index = 0;
@@ -119,6 +118,7 @@ class Game {
   }
 
   reset() {
+    armadilloVelocity = 30;
     this.armadillo.style.left = `${armadilloPosition}px`;
     this.fox.style.left = `${foxPosition}px`;
     position = 0;
@@ -213,16 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
   botaoReset.addEventListener("click", nextGame);
 });
 
-inputOfLogic.addEventListener("input", (e) => {
-  if (e.target.value == "") {
-    submitLogicButton.disabled = true;
-  } else {
-    submitLogicButton.disabled = false;
-  }
-});
 
 submitLogicButton.addEventListener("click", () => {
-  console.log(inputOfLogic.value);
+  console.log("testando");
 })
 
 function nextGame() {

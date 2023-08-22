@@ -176,7 +176,7 @@
         </div>
       </div>
 
-      <!-- Modal para mostar os dados do usuário -->
+      <!-- Modal para mostrar que o desafio foi completo -->
       <div
         id="completeChallenge"
         class="modal fade"
@@ -197,24 +197,43 @@
                 Parabéns por completar os desafios! <br />Por favor, nos diga
                 qual foi a sua lógica para a resolução das questões:
               </p>
-              <div class="d-flex flex-row">
-                <input
-                  type="text"
-                  class="form-control me-1"
-                  name="logic"
-                  autocomplete="off"
-                />
-                <button
-                  data-submit-logic
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#completeChallenge"
-                  disabled
-                >
-                  Enviar
-                </button>
-              </div>
+
+              <form
+                action="https://formsubmit.co/metodologiasageis41@gmail.com"
+                method="POST"
+              >
+                <div class="form-check">
+                  <input data-nickname type="hidden" name="nickname" />
+                  <input
+                    data-first-question
+                    type="hidden"
+                    name="questao_um"
+                  />
+                  <input
+                    data-second-question
+                    type="hidden"
+                    name="questao_dois"
+                  />
+                  <input
+                    data-third-question
+                    type="hidden"
+                    name="questao_tres"
+                  />
+                  <textarea
+                    class="form-control mb-1"
+                    name="logica"
+                    rows="4"
+                  ></textarea>
+
+                  <button
+                    id="data-submit-logic"
+                    type="submit"
+                    class="btn btn-primary disabled"
+                  >
+                    Enviar
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
