@@ -18,12 +18,11 @@ const fox = document.getElementById("object2");
 // **********************  BUTTONS  ********************** //
 const intoGameButton = document.getElementById("start-button");
 const confirmAnswertButton = document.querySelector("[data-js=confirmAnswert]");
-const resetButton = document.getElementById("reset");
 const submitLogicButton = document.querySelector("#data-submit-logic");
 
 // **********************  DATA  ********************** //
 let index = 0;
-let attempts = 3
+let attempts = 1
 
 foxConstVelocityText.innerHTML = data[index].foxVelocity;
 halfTimeText.innerHTML = data[index].crashTime;
@@ -98,7 +97,6 @@ class Game {
       if (parseInt(this.fox.style.left) > parseInt(this.armadillo.style.left)) {
         clearInterval(mru);
         this.fox.style.left = `${parseInt(this.fox.style.left) - 100}px`;
-        resetButton.disabled = false;
         setTimeout(() => {
           armadillo.classList.remove("isMove");
           fox.classList.remove("foxIsMove");
@@ -110,7 +108,6 @@ class Game {
         clearInterval(mru);
         this.fox.style.left = "1080px";
 
-        resetButton.disabled = false;
       }
       time++;
     };
@@ -126,7 +123,6 @@ class Game {
     difference = 0;
     time = 0;
     input.value = "";
-    resetButton.disabled = true;
     confirmAnswertButton.disabled = true;
     setTimeout(() => {
       game.startGame();
@@ -167,9 +163,25 @@ confirmAnswertButton.addEventListener("click", () => {
     difference = position;
     game.startGame();
     setTimeout(() => {
-      var modalElement = document.getElementById("meuModal2");
-      var modal = new bootstrap.Modal(modalElement);
-      modal.show();
+
+      if(attempts == 3){
+        if (index == 2) {
+          var completeChallengeModalElement =
+            document.getElementById("completeChallenge");
+          var completeChallengeModal = new bootstrap.Modal(
+            completeChallengeModalElement
+          );
+          completeChallengeModal.show();
+        }
+        console.log(attempts);
+        var elementModalAttempts = document.getElementById("modalAttempts")
+        var modalAttempts = new bootstrap.Modal(elementModalAttempts)
+        modalAttempts.show()
+      } else {
+        var modalElement = document.getElementById("meuModal2");
+        var modal = new bootstrap.Modal(modalElement);
+        modal.show();
+      }
     }, 1500);
   } else {
     game.startGame();
@@ -194,11 +206,7 @@ confirmAnswertButton.addEventListener("click", () => {
       fox.classList.remove("foxIsMove");
     }, 1500);
   }
-  localStorage.setItem(`Desafio_0${1+index}`, `Resposta certa: ${data[index].armadilloVelocity} - Resposta enviada: ${selectInputValue}`);
-});
-
-resetButton.addEventListener("click", () => {
-  game.reset();
+  localStorage.setItem(`Desafio_0${1+index}`, `Resposta certa: ${data[index].armadilloVelocity} - Resposta enviada: ${selectInputValue} - Número de tentativas: ${attempts}`);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -207,11 +215,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function resetGame() {
-  game.reset();
+    console.log(attempts);
+    attempts++;
+    game.reset();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   var botaoReset = document.getElementById("btGo");
+  botaoReset.addEventListener("click", nextGame);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var botaoReset = document.getElementById("newAttempts");
   botaoReset.addEventListener("click", nextGame);
 });
 
@@ -222,6 +237,7 @@ submitLogicButton.addEventListener("click", () => {
 
 function nextGame() {
   index++;
+  attempts = 1;
   armadilloVelocity = 30;
   foxConstVelocityText.innerHTML = data[index].foxVelocity;
   halfTimeText.innerHTML = data[index].crashTime;

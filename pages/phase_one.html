@@ -48,11 +48,6 @@
         class="d-none flex-column justify-content-center align-items-center vh-100"
       >
         <div id="game-container" class="game-screen d-block overflow-hidden">
-          <div class="d-block p-3 text-end">
-            <button id="reset" class="btn btn-danger" disabled>
-              <i class="bi bi-pause"></i> Resetar
-            </button>
-          </div>
 
           <!-- Código do overlay -->
           <div data-js="overlay" class="d-none bg-dark w-75 p-4 mx-auto">
@@ -95,7 +90,7 @@
         </div>
       </div>
 
-      <!-- Modal -->
+      <!-- Modal para o proximo desafio -->
       <div
         class="modal fade"
         id="meuModal"
@@ -104,6 +99,7 @@
         aria-labelledby="modalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
+        data-bs-target="#staticBackdrop"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -131,7 +127,45 @@
         </div>
       </div>
 
-      <!-- Modal -->
+      <!-- Modal para informa que o numero de tentativas acabou -->
+      <div
+        class="modal fade"
+        id="modalAttempts"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalLabel"
+        aria-hidden="true"
+        data-bs-backdrop="static"
+        data-bs-target="#staticBackdrop"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-black" id="modalLabel">
+                Fim do desafio
+              </h5>
+            </div>
+            <div class="modal-body">
+              <p class="textWin text-black">
+                Siga para próximo desafio.
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                id="newAttempts"
+              >
+                Próxima Desafio
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal para uma nova tentativa-->
       <div
         class="modal fade"
         id="meuModal2"
@@ -139,6 +173,7 @@
         role="dialog"
         aria-labelledby="modalLabel"
         aria-hidden="true"
+        data-bs-backdrop="static"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -146,14 +181,6 @@
               <h5 class="modal-title text-black" id="modalLabel">
                 Fim da fase
               </h5>
-              <button
-                type="button"
-                class="close"
-                data-bs-dismiss="modal"
-                aria-label="Fechar"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
             </div>
 
             <div class="modal-body">
