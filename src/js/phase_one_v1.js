@@ -23,6 +23,7 @@ const submitLogicButton = document.querySelector("#data-submit-logic");
 
 // **********************  DATA  ********************** //
 let index = 0;
+let attempts = 3
 
 foxConstVelocityText.innerHTML = data[index].foxVelocity;
 halfTimeText.innerHTML = data[index].crashTime;
@@ -193,6 +194,7 @@ confirmAnswertButton.addEventListener("click", () => {
       fox.classList.remove("foxIsMove");
     }, 1500);
   }
+  localStorage.setItem(`Desafio_0${1+index}`, `Resposta certa: ${data[index].armadilloVelocity} - Resposta enviada: ${selectInputValue}`);
 });
 
 resetButton.addEventListener("click", () => {
@@ -227,4 +229,20 @@ function nextGame() {
   endPosition.innerHTML = data[index].positionUntilEnd;
 
   game.reset();
+}
+
+function makeFile() {
+  const first_challenge = document.getElementById("first_challenge")
+  const second_challenge = document.getElementById("second_challenge")
+  const three_challenge = document.getElementById("three_challenge")
+
+  let challengeOne = localStorage.getItem("Desafio_01");
+  let challengeSecond = localStorage.getItem("Desafio_02");
+  let challengeThree = localStorage.getItem("Desafio_03");
+
+
+  first_challenge.value = `${challengeOne}`
+  second_challenge.value = `${challengeSecond}`
+  three_challenge.value = `${challengeThree}`
+
 }
