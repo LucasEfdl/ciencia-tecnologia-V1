@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 submitLogicButton.addEventListener("click", () => {
-  console.log("testando");
+  makeFile();
 })
 
 function nextGame() {
