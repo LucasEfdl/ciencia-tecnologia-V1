@@ -22,10 +22,13 @@
         id="initial-screen"
         class="d-flex flex-column justify-content-center align-items-center vh-100 p-4"
       >
+      <label for="nameUser">Antes da diversão começar, infome o seu nome:</label>
+        <input type="text" id="nameUser" name="nameUser">
         <button
           id="start-button"
           class="btn btn-primary btn-sm ms-1"
           type="button"
+          disabled="true"
         >
           Continuar
         </button>
@@ -257,6 +260,7 @@
 
     <!-- Script javascript -->
     <script type="module" src="src/js/phase_one_v1.js"></script>
+    <script src="src/js/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="src/js/bootstrap.min.js"></script>

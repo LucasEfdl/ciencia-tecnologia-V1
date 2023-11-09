@@ -248,15 +248,17 @@ function nextGame() {
 }
 
 function makeFile() {
+  const nameOfUser = document.querySelector("[data-nickname]")
   const first_challenge = document.getElementById("first_challenge")
   const second_challenge = document.getElementById("second_challenge")
   const three_challenge = document.getElementById("three_challenge")
 
+  let nameOfUser_ = localStorage.getItem("name")
   let challengeOne = localStorage.getItem("Desafio_01");
   let challengeSecond = localStorage.getItem("Desafio_02");
   let challengeThree = localStorage.getItem("Desafio_03");
 
-
+  nameOfUser.value = `${nameOfUser_}`
   first_challenge.value = `${challengeOne}`
   second_challenge.value = `${challengeSecond}`
   three_challenge.value = `${challengeThree}`
