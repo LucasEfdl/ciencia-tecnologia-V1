@@ -1,5 +1,13 @@
 @import url(bootstrap.css);
 
+main {
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 1200px;
+  height: 520px;
+}
 
 .game-screen {
   background-image: url(../images/bg_game_one.png);
