@@ -11,6 +11,18 @@ const distBetweenFoxArmadillo = document.querySelector(
   ".dist-between-fox-armadillo"
 );
 
+// **********************   DATA OF FORM  ********************** //
+const nameOfUser = document.querySelector("[data-nickname]")
+const first_challenge = document.getElementById("first_challenge")
+const second_challenge = document.getElementById("second_challenge")
+const three_challenge = document.getElementById("three_challenge")
+const four_challenge = document.getElementById("Four_challenge")
+const five_challenge = document.getElementById("five_challenge")
+const six_challenge = document.getElementById("six_challenge")
+const seven_challenge = document.getElementById("saven_challenge")
+const logicUsertext = document.getElementById("logicUsed")
+
+
 // **********************  OBJECTS  ********************** //
 const armadillo = document.getElementById("object");
 const fox = document.getElementById("object2");
@@ -22,6 +34,7 @@ const submitLogicButton = document.querySelector("#data-submit-logic");
 
 // **********************  DATA  ********************** //
 let index = 0;
+const lastChallenge = data.length - 1
 let attempts = 1
 
 foxConstVelocityText.innerHTML = data[index].foxVelocity;
@@ -165,7 +178,7 @@ confirmAnswertButton.addEventListener("click", () => {
     setTimeout(() => {
 
       if(attempts == 3){
-        if (index == 2) {
+        if (index == lastChallenge) {
           var completeChallengeModalElement =
             document.getElementById("completeChallenge");
           var completeChallengeModal = new bootstrap.Modal(
@@ -173,7 +186,6 @@ confirmAnswertButton.addEventListener("click", () => {
           );
           completeChallengeModal.show();
         }
-        console.log(attempts);
         var elementModalAttempts = document.getElementById("modalAttempts")
         var modalAttempts = new bootstrap.Modal(elementModalAttempts)
         modalAttempts.show()
@@ -189,11 +201,11 @@ confirmAnswertButton.addEventListener("click", () => {
       var modalElement = document.getElementById("meuModal");
       var modal = new bootstrap.Modal(modalElement);
 
-      if (index < 2) {
+      if (index < lastChallenge) {
         modal.show();
       }
 
-      if (index == 2) {
+      if (index == lastChallenge) {
         var completeChallengeModalElement =
           document.getElementById("completeChallenge");
         var completeChallengeModal = new bootstrap.Modal(
@@ -231,7 +243,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-submitLogicButton.addEventListener("click", () => {
+submitLogicButton.addEventListener("click",() => {
+  const logicUsertext = document.getElementById("logicUsed")
+  localStorage.setItem("Logica Utilizada", logicUsertext.value)
   makeFile();
 })
 
@@ -248,19 +262,24 @@ function nextGame() {
 }
 
 function makeFile() {
-  const nameOfUser = document.querySelector("[data-nickname]")
-  const first_challenge = document.getElementById("first_challenge")
-  const second_challenge = document.getElementById("second_challenge")
-  const three_challenge = document.getElementById("three_challenge")
-
   let nameOfUser_ = localStorage.getItem("name")
   let challengeOne = localStorage.getItem("Desafio_01");
   let challengeSecond = localStorage.getItem("Desafio_02");
   let challengeThree = localStorage.getItem("Desafio_03");
+  let challengeFour = localStorage.getItem("Desafio_04");
+  let challengeFive = localStorage.getItem("Desafio_05");
+  let challengeSix = localStorage.getItem("Desafio_06");
+  let challengeSeven = localStorage.getItem("Desafio_07");
+  let logicUsertext_ = localStorage.getItem("Logica Utilizada")
+
 
   nameOfUser.value = `${nameOfUser_}`
   first_challenge.value = `${challengeOne}`
   second_challenge.value = `${challengeSecond}`
   three_challenge.value = `${challengeThree}`
-
+  four_challenge.value = `${challengeFour}`
+  five_challenge.value = `${challengeFive}`
+  six_challenge.value = `${challengeSix}`
+  seven_challenge.value = `${challengeSeven}`
+  logicUsertext.value = `${logicUsertext_}`
 }
