@@ -11,18 +11,6 @@ const distBetweenFoxArmadillo = document.querySelector(
   ".dist-between-fox-armadillo"
 );
 
-// **********************   DATA OF FORM  ********************** //
-const nameOfUser = document.querySelector("[data-nickname]")
-const first_challenge = document.getElementById("first_challenge")
-const second_challenge = document.getElementById("second_challenge")
-const three_challenge = document.getElementById("three_challenge")
-const four_challenge = document.getElementById("Four_challenge")
-const five_challenge = document.getElementById("five_challenge")
-const six_challenge = document.getElementById("six_challenge")
-const seven_challenge = document.getElementById("saven_challenge")
-const logicUsertext = document.getElementById("logicUsed")
-
-
 // **********************  OBJECTS  ********************** //
 const armadillo = document.getElementById("object");
 const fox = document.getElementById("object2");
@@ -103,6 +91,7 @@ class Game {
           overlay.classList.replace("d-none", "d-block");
           armadillo.classList.remove("isMove");
           fox.classList.remove("foxIsMove");
+          input.focus()
         }, 800);
       }
 
@@ -218,7 +207,8 @@ confirmAnswertButton.addEventListener("click", () => {
       fox.classList.remove("foxIsMove");
     }, 1500);
   }
-  localStorage.setItem(`Desafio_0${1+index}`, `Resposta certa: ${data[index].armadilloVelocity} - Resposta enviada: ${selectInputValue} - Número de tentativas: ${attempts}`);
+  const answerOfTheTime = document.getElementById(`${index + 1}_challenge`)
+  answerOfTheTime.value = `Resposta certa: ${data[index].armadilloVelocity} - Resposta enviada: ${selectInputValue} - Número de tentativas: ${attempts}` 
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -243,10 +233,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-submitLogicButton.addEventListener("click",() => {
-  const logicUsertext = document.getElementById("logicUsed")
-  localStorage.setItem("Logica Utilizada", logicUsertext.value)
-  makeFile();
+submitLogicButton.addEventListener("click", () => {
+  console.log("Game Finalizado Com sucesso!")
 })
 
 function nextGame() {
@@ -259,27 +247,4 @@ function nextGame() {
   endPosition.innerHTML = data[index].positionUntilEnd;
 
   game.reset();
-}
-
-function makeFile() {
-  let nameOfUser_ = localStorage.getItem("name")
-  let challengeOne = localStorage.getItem("Desafio_01");
-  let challengeSecond = localStorage.getItem("Desafio_02");
-  let challengeThree = localStorage.getItem("Desafio_03");
-  let challengeFour = localStorage.getItem("Desafio_04");
-  let challengeFive = localStorage.getItem("Desafio_05");
-  let challengeSix = localStorage.getItem("Desafio_06");
-  let challengeSeven = localStorage.getItem("Desafio_07");
-  let logicUsertext_ = localStorage.getItem("Logica Utilizada")
-
-
-  nameOfUser.value = `${nameOfUser_}`
-  first_challenge.value = `${challengeOne}`
-  second_challenge.value = `${challengeSecond}`
-  three_challenge.value = `${challengeThree}`
-  four_challenge.value = `${challengeFour}`
-  five_challenge.value = `${challengeFive}`
-  six_challenge.value = `${challengeSix}`
-  seven_challenge.value = `${challengeSeven}`
-  logicUsertext.value = `${logicUsertext_}`
 }
