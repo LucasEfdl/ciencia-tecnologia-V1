@@ -142,11 +142,10 @@ intoGameButton.addEventListener("click", () => {
 });
 
 input.addEventListener("input", (e) => {
-  let numValue = parseInt(e.target.value);
+  let numValue = parseFloat(e.target.value);
   if (
     e.target.value != "" &&
-    !isNaN(numValue) &&
-    numValue <= data[index].armadilloVelocity
+    !isNaN(numValue)
   ) {
     confirmAnswertButton.disabled = false;
   } else {
@@ -159,7 +158,7 @@ confirmAnswertButton.addEventListener("click", () => {
   let num = 0;
   const selectInputValue = input.value;
   const numValue = selectInputValue;
-  num = parseInt(numValue);
+  num = parseFloat(numValue);
   if (num != data[index].armadilloVelocity) {
     armadilloVelocity = lostVelocity;
     difference = position;
@@ -217,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function resetGame() {
-    console.log(attempts);
     attempts++;
     game.reset();
 }
